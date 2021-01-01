@@ -53,6 +53,9 @@ public class KeyValueStore {
 
 //delete the key value from datastore
 	public synchronized String delete(String key) throws IOException {
+		if(p.getProperty(key)==null) {
+			return "data doesn't exist";
+		}
 		p.load(ist);
 		p.remove(key);
 		p.store(ost, null);
